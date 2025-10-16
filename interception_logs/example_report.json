@@ -1,0 +1,174 @@
+{
+  "timestamp": "2025-10-16T13:55:11.999761",
+  "summary": {
+    "total_calls": 6,
+    "total_indicators": 5,
+    "high_confidence_indicators": 4,
+    "unique_patterns": 5
+  },
+  "indicators_by_confidence": {
+    "HIGH": [
+      {
+        "timestamp": "2025-10-16T13:55:11.999509",
+        "call_id": "fdff5a17",
+        "indicator_type": "banner_format",
+        "content": "[('***', 'IMPORTANT ANNOUNCEMENT'), ('***', 'END ANNOUNCEMENT')]",
+        "confidence": "HIGH",
+        "location": "system_prompt",
+        "pattern_matched": "banner_format"
+      },
+      {
+        "timestamp": "2025-10-16T13:55:11.999509",
+        "call_id": "fdff5a17",
+        "indicator_type": "announcement_keyword",
+        "content": "['IMPORTANT', 'ANNOUNCEMENT', 'update', 'ANNOUNCEMENT']",
+        "confidence": "HIGH",
+        "location": "system_prompt",
+        "pattern_matched": "announcement_keyword"
+      },
+      {
+        "timestamp": "2025-10-16T13:55:11.999509",
+        "call_id": "fdff5a17",
+        "indicator_type": "date_reference",
+        "content": "['effective']",
+        "confidence": "HIGH",
+        "location": "system_prompt",
+        "pattern_matched": "date_reference"
+      },
+      {
+        "timestamp": "2025-10-16T13:55:11.999715",
+        "call_id": "9bd564a8",
+        "indicator_type": "system_message",
+        "content": "['[SYSTEM]']",
+        "confidence": "HIGH",
+        "location": "response_block_0",
+        "pattern_matched": "system_message"
+      }
+    ],
+    "MEDIUM": [
+      {
+        "timestamp": "2025-10-16T13:55:11.999715",
+        "call_id": "9bd564a8",
+        "indicator_type": "version_info",
+        "content": "['Version 2.1']",
+        "confidence": "MEDIUM",
+        "location": "response_block_0",
+        "pattern_matched": "version_info"
+      }
+    ]
+  },
+  "indicators_by_type": {
+    "banner_format": [
+      {
+        "timestamp": "2025-10-16T13:55:11.999509",
+        "call_id": "fdff5a17",
+        "indicator_type": "banner_format",
+        "content": "[('***', 'IMPORTANT ANNOUNCEMENT'), ('***', 'END ANNOUNCEMENT')]",
+        "confidence": "HIGH",
+        "location": "system_prompt",
+        "pattern_matched": "banner_format"
+      }
+    ],
+    "announcement_keyword": [
+      {
+        "timestamp": "2025-10-16T13:55:11.999509",
+        "call_id": "fdff5a17",
+        "indicator_type": "announcement_keyword",
+        "content": "['IMPORTANT', 'ANNOUNCEMENT', 'update', 'ANNOUNCEMENT']",
+        "confidence": "HIGH",
+        "location": "system_prompt",
+        "pattern_matched": "announcement_keyword"
+      }
+    ],
+    "date_reference": [
+      {
+        "timestamp": "2025-10-16T13:55:11.999509",
+        "call_id": "fdff5a17",
+        "indicator_type": "date_reference",
+        "content": "['effective']",
+        "confidence": "HIGH",
+        "location": "system_prompt",
+        "pattern_matched": "date_reference"
+      }
+    ],
+    "system_message": [
+      {
+        "timestamp": "2025-10-16T13:55:11.999715",
+        "call_id": "9bd564a8",
+        "indicator_type": "system_message",
+        "content": "['[SYSTEM]']",
+        "confidence": "HIGH",
+        "location": "response_block_0",
+        "pattern_matched": "system_message"
+      }
+    ],
+    "version_info": [
+      {
+        "timestamp": "2025-10-16T13:55:11.999715",
+        "call_id": "9bd564a8",
+        "indicator_type": "version_info",
+        "content": "['Version 2.1']",
+        "confidence": "MEDIUM",
+        "location": "response_block_0",
+        "pattern_matched": "version_info"
+      }
+    ]
+  },
+  "pattern_frequency": {
+    "banner_format": 1,
+    "announcement_keyword": 1,
+    "date_reference": 1,
+    "system_message": 1,
+    "version_info": 1
+  },
+  "timeline": [
+    {
+      "timestamp": "2025-10-16T13:55:11.999207",
+      "call_id": "83d69016",
+      "type": "request",
+      "model": "claude-sonnet-4-20250514",
+      "endpoint": "beta.messages.create"
+    },
+    {
+      "timestamp": "2025-10-16T13:55:11.999441",
+      "call_id": "83d69016",
+      "type": "response",
+      "model": "claude-sonnet-4-20250514",
+      "endpoint": "beta.messages.create"
+    },
+    {
+      "timestamp": "2025-10-16T13:55:11.999509",
+      "call_id": "fdff5a17",
+      "type": "request",
+      "model": "claude-sonnet-4-20250514",
+      "endpoint": "beta.messages.create"
+    },
+    {
+      "timestamp": "2025-10-16T13:55:11.999641",
+      "call_id": "fdff5a17",
+      "type": "response",
+      "model": "claude-sonnet-4-20250514",
+      "endpoint": "beta.messages.create"
+    },
+    {
+      "timestamp": "2025-10-16T13:55:11.999678",
+      "call_id": "9bd564a8",
+      "type": "request",
+      "model": "claude-haiku-3-5-20241022",
+      "endpoint": "beta.messages.create"
+    },
+    {
+      "timestamp": "2025-10-16T13:55:11.999715",
+      "call_id": "9bd564a8",
+      "type": "response",
+      "model": "claude-haiku-3-5-20241022",
+      "endpoint": "beta.messages.create"
+    }
+  ],
+  "recommendations": [
+    "Found 4 high-confidence announcement indicators. Review these calls manually for verification.",
+    "Banner-formatted text detected. This is a strong indicator of announcements. Check if this content originates from user input or system injection.",
+    "System message markers detected. Verify if these are part of normal conversation or injected announcements.",
+    "Date references found. Announcements often include temporal information. Check if these align with known announcement dates."
+  ]
+}

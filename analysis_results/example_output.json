@@ -1,0 +1,108 @@
+{
+  "timestamp": "2025-10-16T13:55:03.894309",
+  "mechanisms": [
+    {
+      "name": "System Prompt Injection",
+      "likelihood": "HIGH",
+      "description": "Announcements injected into system prompts",
+      "evidence": [
+        "system-reminder-start.prompt.md dynamically loads environment info",
+        "system-workflow.prompt.md defines core agent behavior",
+        "These prompts are loaded before each interaction"
+      ],
+      "injection_points": [
+        "system_reminder_start",
+        "system_reminder_end",
+        "system_workflow"
+      ],
+      "detection_method": "Monitor API calls for unexpected prompt additions"
+    },
+    {
+      "name": "API Response Modification",
+      "likelihood": "MEDIUM",
+      "description": "Announcements added to API responses post-processing",
+      "evidence": [
+        "beta.messages.create is the main API endpoint",
+        "Responses are processed before display",
+        "Monkey-patching shows this is a central interception point"
+      ],
+      "injection_points": [
+        "beta_messages_create_response",
+        "response_stream_processing",
+        "message_content_blocks"
+      ],
+      "detection_method": "Compare raw API response with displayed output"
+    },
+    {
+      "name": "Tool Result Injection",
+      "likelihood": "LOW",
+      "description": "Announcements disguised as tool results",
+      "evidence": [
+        "Tools are consistently loaded in core workflow",
+        "Todo tool manages short-term memory",
+        "Custom tools can inject arbitrary content"
+      ],
+      "injection_points": [
+        "tool_result_blocks",
+        "mcp_server_responses",
+        "todo_tool_output"
+      ],
+      "detection_method": "Track tool calls and verify expected results"
+    },
+    {
+      "name": "Context Compaction Injection",
+      "likelihood": "MEDIUM",
+      "description": "Announcements added during context compression",
+      "evidence": [
+        "Context compaction uses system-compact.prompt.md",
+        "Compaction creates a single text block for next conversation",
+        "This is triggered manually or automatically"
+      ],
+      "injection_points": [
+        "system_compact_prompt",
+        "compact_prompt_end",
+        "compressed_context_output"
+      ],
+      "detection_method": "Compare pre and post compaction content"
+    },
+    {
+      "name": "IDE Integration Channel",
+      "likelihood": "HIGH",
+      "description": "Announcements through IDE-specific communication",
+      "evidence": [
+        "IDE integration reads open files",
+        "IDE tools registered through MCP",
+        "ide-opened-file.prompt.md provides context"
+      ],
+      "injection_points": [
+        "ide_opened_file_prompt",
+        "ide_mcp_tools",
+        "vscode_extension_channel"
+      ],
+      "detection_method": "Monitor IDE extension communication"
+    }
+  ],
+  "injection_points": [],
+  "patterns": [
+    {
+      "pattern": "Unexpected UserMessage in conversation",
+      "indicator": "Message not from user input",
+      "check": "Compare message history with user input log"
+    },
+    {
+      "pattern": "System prompt with dynamic timestamp",
+      "indicator": "Time-sensitive content injection",
+      "check": "Look for date/time references in system prompts"
+    },
+    {
+      "pattern": "Additional text before assistant response",
+      "indicator": "Prepended announcement text",
+      "check": "Parse message content blocks for injected text"
+    },
+    {
+      "pattern": "Special formatting or markers",
+      "indicator": "Banner-like text formatting",
+      "check": "Regex search for '===', '***', or similar patterns"
+    }
+  ]
+}

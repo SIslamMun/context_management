@@ -37,11 +37,15 @@ env/
 .DS_Store
 Thumbs.db
 
-# Project specific - keep structure but ignore generated files
+# Project specific - ignore most generated files but keep examples
 analysis_results/*.json
+!analysis_results/example_*.json
 interception_logs/*.jsonl
 interception_logs/*.json
+!interception_logs/example_*.json
+!interception_logs/example_*.jsonl
 haiku_agent_logs/*.json
+!haiku_agent_logs/example_*.json
 
 # But keep the directories
 !analysis_results/.gitkeep
